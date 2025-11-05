@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/Maeve',
+  basePath: '/maeve',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -14,3 +14,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+#
