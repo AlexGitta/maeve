@@ -24,7 +24,7 @@ export function HeroWaitlist() {
         <div className="flex justify-center mb-6 md:mb-14 relative z-0">
           <div className="w-80 h-40">
             <img
-              src="/circlelogo.png"
+              src="/maeve/circlelogo.png"
               alt="Maeve"
               className="w-full h-full object-contain rounded-4xl"
             />
