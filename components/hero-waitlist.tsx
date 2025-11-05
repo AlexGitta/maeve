@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import Image from "next/image"
 
 export function HeroWaitlist() {
   const [email, setEmail] = useState("")
@@ -23,13 +22,11 @@ export function HeroWaitlist() {
       <div className="w-full max-w-2xl space-y-8">
         {/* Brand Logo/Image */}
         <div className="flex justify-center mb-14">
-          <div className="relative w-64 h-32">
-            <Image
-              src="/circlelogo.png"
+          <div className="w-64 h-32">
+            <img
+              src="/Maeve/circlelogo.png"
               alt="Maeve"
-              fill
-              className="object-contain rounded-4xl"
-              priority
+              className="w-full h-full object-contain rounded-4xl"
             />
           </div>
         </div>
