@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/maeve',
+  basePath: '/Maeve',
   images: {
     unoptimized: true,
     remotePatterns: [
