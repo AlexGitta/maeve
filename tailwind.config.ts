@@ -23,7 +23,7 @@ const config: Config = {
       },
       animation: {
         aurora: "aurora 12s linear infinite",
-        "aurora-mobile": "aurora-mobile 15s ease-in-out infinite",
+        "aurora-mobile": "aurora-mobile 8s ease-in-out infinite",
       },
       keyframes: {
         aurora: {
