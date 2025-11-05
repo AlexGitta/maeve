@@ -22,7 +22,8 @@ const config: Config = {
         border: "hsl(var(--border))",
       },
       animation: {
-        aurora: "aurora 15s linear infinite",
+        aurora: "aurora 12s linear infinite",
+        "aurora-mobile": "aurora-mobile 8s ease-in-out infinite",
       },
       keyframes: {
         aurora: {
@@ -34,6 +35,23 @@ const config: Config = {
           },
           "100%": {
             backgroundPosition: "0% 50%",
+          },
+        },
+        "aurora-mobile": {
+          "0%": {
+            backgroundPosition: "0% 0%",
+          },
+          "25%": {
+            backgroundPosition: "100% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 100%",
+          },
+          "75%": {
+            backgroundPosition: "0% 50%",
+          },
+          "100%": {
+            backgroundPosition: "0% 0%",
           },
         },
       },

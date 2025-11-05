@@ -24,7 +24,7 @@ export const AuroraBackground = ({
             [background-image:var(--aurora)]
             [background-size:200%_100%]
             [background-position:0%_50%]
-            animate-aurora
+            animate-aurora-mobile md:animate-aurora
             filter blur-[80px]
             pointer-events-none
             absolute -inset-[10px] opacity-50 will-change-transform`,
