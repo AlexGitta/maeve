@@ -20,7 +20,7 @@ export const AuroraBackground = ({
         <div
           className={cn(
             `
-            [--aurora:repeating-linear-gradient(100deg,#252AB3_0%,#1B3054_15%,#7294B5_30%,#252AB3_45%,#1B3054_60%,#7294B5_75%,#252AB3_90%,#1B3054_100%)]
+            [--aurora:repeating-linear-gradient(100deg,#2030d0_0%,#1B3054_15%,#7294B5_30%,#2030d0_45%,#1B3054_60%,#7294B5_75%,#2030d0_90%,#1B3054_100%)]
             [background-image:var(--aurora)]
             [background-size:200%_100%]
             [background-position:0%_50%]

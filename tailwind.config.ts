@@ -23,7 +23,7 @@ const config: Config = {
       },
       animation: {
         aurora: "aurora 12s linear infinite",
-        "aurora-mobile": "aurora-mobile 8s ease-in-out infinite",
+        "aurora-mobile": "aurora-mobile 15s ease-in-out infinite",
       },
       keyframes: {
         aurora: {
@@ -39,19 +39,22 @@ const config: Config = {
         },
         "aurora-mobile": {
           "0%": {
-            backgroundPosition: "0% 0%",
+            backgroundPosition: "0% 20%",
           },
-          "25%": {
-            backgroundPosition: "100% 50%",
+          "20%": {
+            backgroundPosition: "40% 60%",
           },
-          "50%": {
-            backgroundPosition: "100% 100%",
+          "40%": {
+            backgroundPosition: "80% 30%",
           },
-          "75%": {
-            backgroundPosition: "0% 50%",
+          "60%": {
+            backgroundPosition: "30% 70%",
+          },
+          "80%": {
+            backgroundPosition: "70% 40%",
           },
           "100%": {
-            backgroundPosition: "0% 0%",
+            backgroundPosition: "0% 20%",
           },
         },
       },
