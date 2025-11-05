@@ -18,11 +18,11 @@ export function HeroWaitlist() {
   }
 
   return (
-    <section className="flex-1 flex items-center justify-center px-4 py-8 md:py-24">
+    <section className="flex-1 flex items-center justify-center px-4 py-4 md:py-20 relative">
       <div className="w-full max-w-2xl space-y-8">
-        {/* Brand Logo/Image */}
-        <div className="flex justify-center mb-8 md:mb-14">
-          <div className="w-64 h-32">
+        {/* Brand Logo/Image - Behind aurora */}
+        <div className="flex justify-center mb-6 md:mb-14 relative z-0">
+          <div className="w-80 h-40">
             <img
               src="/circlelogo.png"
               alt="Maeve"
@@ -31,16 +31,16 @@ export function HeroWaitlist() {
           </div>
         </div>
 
-        {/* Main Message */}
-        <div className="space-y-4 text-center">
+        {/* Main Message - In front of aurora */}
+        <div className="space-y-4 text-center relative z-20">
           <h1 className="text-5xl md:text-6xl font-black tracking-tight text-foreground">look after yourself.</h1>
-          <p className="text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 font-light leading-relaxed relative z-0">
             something is coming. be the first to know.
           </p>
         </div>
 
-        {/* Email Signup */}
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8">
+        {/* Email Signup - In front of aurora */}
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8 relative z-20">
           <div className="flex flex-col gap-3">
             <input
               type="email"

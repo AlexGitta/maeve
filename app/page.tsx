@@ -6,9 +6,13 @@ import { AuroraBackground } from "../components/ui/shadcn-io/aurora-background"
 export default function Home() {
   return (
     <AuroraBackground>
-      <Header />
+      <div className="relative z-0">
+        <Header />
+      </div>
       <HeroWaitlist />
-      <Footer />
+      <div className="relative z-0">
+        <Footer />
+      </div>
     </AuroraBackground>
   )
 }
