@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/maeve',
+  basePath: process.env.NODE_ENV === 'production' ? '/maeve' : '',
   images: {
     unoptimized: true,
     remotePatterns: [

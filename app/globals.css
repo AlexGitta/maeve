@@ -11,6 +11,16 @@
     --secondary: 215 15% 93%;
     --secondary-foreground: 0 0% 21%;
     --border: 215 18% 88%;
+    
+    /* Aurora colors */
+    --white: #ffffff;
+    --black: #000000;
+    --transparent: transparent;
+    --blue-500: #252AB3;
+    --indigo-300: #4650c9;
+    --blue-300: #1B3054;
+    --violet-200: #6a73d8;
+    --blue-400: #252AB3;
   }
 
   * {
