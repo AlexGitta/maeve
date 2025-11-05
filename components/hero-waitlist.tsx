@@ -18,10 +18,10 @@ export function HeroWaitlist() {
   }
 
   return (
-    <section className="flex-1 flex items-center justify-center px-4 py-24">
+    <section className="flex-1 flex items-center justify-center px-4 py-8 md:py-24">
       <div className="w-full max-w-2xl space-y-8">
         {/* Brand Logo/Image */}
-        <div className="flex justify-center mb-14">
+        <div className="flex justify-center mb-8 md:mb-14">
           <div className="w-64 h-32">
             <img
               src="/Maeve/circlelogo.png"
