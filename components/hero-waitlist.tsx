@@ -15,7 +15,7 @@ export function HeroWaitlist() {
     if (email) {
       setSubmitted(true)
       setEmail("")
-      setTimeout(() => setSubmitted(false), 3000)
+      setTimeout(() => setSubmitted(false), 10000)
     }
   }
 
@@ -103,14 +103,41 @@ export function HeroWaitlist() {
                 transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
                 transition: "transform 1s ease-out",
               }}
-              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
+              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded relative overflow-hidden"
             >
-              {submitted ? "thanks for joining" : "join the waitlist"}
+              <span
+                style={{
+                  opacity: submitted ? 0 : 1,
+                  transition: "opacity 0.5s ease-in-out",
+                }}
+                className="inline-block"
+              >
+                join the waitlist
+              </span>
+              <span
+                style={{
+                  opacity: submitted ? 1 : 0,
+                  transition: "opacity 0.5s ease-in-out",
+                  position: submitted ? "static" : "absolute",
+                  visibility: submitted ? "visible" : "hidden",
+                }}
+                className="inline-block"
+              >
+                thanks for joining
+              </span>
             </button>
           </div>
-          {submitted && (
-            <p className="text-center text-sm text-primary font-medium">Check your email for a special message.</p>
-          )}
+          <p
+            style={{
+              opacity: submitted ? 1 : 0,
+              transition: "opacity 0.5s ease-in-out",
+              height: submitted ? "auto" : 0,
+              overflow: "hidden",
+            }}
+            className="text-center text-sm text-primary font-medium"
+          >
+            Check your email for a special message.
+          </p>
         </form>
       </div>
     </section>
