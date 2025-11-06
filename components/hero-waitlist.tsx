@@ -103,14 +103,13 @@ export function HeroWaitlist() {
                 transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
                 transition: "transform 1s ease-out",
               }}
-              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded relative overflow-hidden"
+              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded relative"
             >
               <span
                 style={{
                   opacity: submitted ? 0 : 1,
                   transition: "opacity 0.5s ease-in-out",
                 }}
-                className="inline-block"
               >
                 join the waitlist
               </span>
@@ -118,10 +117,12 @@ export function HeroWaitlist() {
                 style={{
                   opacity: submitted ? 1 : 0,
                   transition: "opacity 0.5s ease-in-out",
-                  position: submitted ? "static" : "absolute",
-                  visibility: submitted ? "visible" : "hidden",
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  whiteSpace: "nowrap",
                 }}
-                className="inline-block"
               >
                 thanks for joining
               </span>
