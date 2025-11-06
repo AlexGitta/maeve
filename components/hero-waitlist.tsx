@@ -2,11 +2,13 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 export function HeroWaitlist() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 })
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -15,6 +17,29 @@ export function HeroWaitlist() {
       setEmail("")
       setTimeout(() => setSubmitted(false), 3000)
     }
+  }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!buttonRef.current) return
+
+    const rect = buttonRef.current.getBoundingClientRect()
+    const buttonCenterX = rect.left + rect.width / 2
+    const buttonCenterY = rect.top + rect.height / 2
+
+    // Calculate distance from center
+    const deltaX = e.clientX - buttonCenterX
+    const deltaY = e.clientY - buttonCenterY
+
+    // Limit the magnetic effect to 15px max distance
+    const maxDistance = 15
+    const limitedX = Math.max(-maxDistance, Math.min(maxDistance, deltaX * 0.3))
+    const limitedY = Math.max(-maxDistance, Math.min(maxDistance, deltaY * 0.3))
+
+    setButtonPosition({ x: limitedX, y: limitedY })
+  }
+
+  const handleMouseLeave = () => {
+    setButtonPosition({ x: 0, y: 0 })
   }
 
   return (
@@ -51,7 +76,14 @@ export function HeroWaitlist() {
               className="w-full px-4 py-3 bg-white border-2 border-gray-200 text-foreground placeholder-gray-400 focus:outline-none focus:border-primary transition rounded"
             />
             <button
+              ref={buttonRef}
               type="submit"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
+                transition: "transform 0.2s ease-out",
+              }}
               className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
             >
               {submitted ? "thanks for joining" : "join the waitlist"}
