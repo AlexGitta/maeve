@@ -65,7 +65,7 @@ export function HeroWaitlist() {
         </div>
 
         {/* Email Signup - In front of aurora */}
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8 relative z-20">
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8 relative z-20 overflow-hidden">
           <div className="flex flex-col gap-3">
             <input
               type="email"
