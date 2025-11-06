@@ -79,14 +79,14 @@ export function HeroWaitlist() {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               className="relative"
-              style={{ padding: "120px", margin: "-120px" }}
+              style={{ padding: "200px", margin: "-200px" }}
             >
               <button
                 ref={buttonRef}
                 type="submit"
                 style={{
                   transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
-                  transition: "transform 0.6s ease-out",
+                  transition: "transform 1s ease-out",
                 }}
                 className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
               >
