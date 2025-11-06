@@ -31,8 +31,8 @@ export function HeroWaitlist() {
     const deltaY = e.clientY - buttonCenterY
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
 
-    // Only apply magnetic effect if cursor is within range (e.g., 300px)
-    const magnetRange = 300
+    // Only apply magnetic effect if cursor is within range (e.g., 2000px)
+    const magnetRange = 2000
     if (distance > magnetRange) {
       setButtonPosition({ x: 0, y: 0 })
       return
