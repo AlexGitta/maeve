@@ -75,19 +75,24 @@ export function HeroWaitlist() {
               required
               className="w-full px-4 py-3 bg-white border-2 border-gray-200 text-foreground placeholder-gray-400 focus:outline-none focus:border-primary transition rounded"
             />
-            <button
-              ref={buttonRef}
-              type="submit"
+            <div
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              style={{
-                transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
-                transition: "transform 0.2s ease-out",
-              }}
-              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
+              className="relative"
+              style={{ padding: "60px" }}
             >
-              {submitted ? "thanks for joining" : "join the waitlist"}
-            </button>
+              <button
+                ref={buttonRef}
+                type="submit"
+                style={{
+                  transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
+                  transition: "transform 0.2s ease-out",
+                }}
+                className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
+              >
+                {submitted ? "thanks for joining" : "join the waitlist"}
+              </button>
+            </div>
           </div>
           {submitted && (
             <p className="text-center text-sm text-primary font-medium">Check your email for a special message.</p>
