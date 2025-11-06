@@ -19,7 +19,7 @@ export function HeroWaitlist() {
     }
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!buttonRef.current) return
 
     const rect = buttonRef.current.getBoundingClientRect()
@@ -38,7 +38,7 @@ export function HeroWaitlist() {
     setButtonPosition({ x: limitedX, y: limitedY })
   }
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     setButtonPosition({ x: 0, y: 0 })
   }
 
