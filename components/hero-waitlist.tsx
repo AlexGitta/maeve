@@ -26,14 +26,31 @@ export function HeroWaitlist() {
     const buttonCenterX = rect.left + rect.width / 2
     const buttonCenterY = rect.top + rect.height / 2
 
-    // Calculate distance from center
+    // Calculate distance from cursor to button center
     const deltaX = e.clientX - buttonCenterX
     const deltaY = e.clientY - buttonCenterY
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
 
-    // Limit the magnetic effect to 15px max distance
+    // Only apply magnetic effect if cursor is within range (e.g., 300px)
+    const magnetRange = 300
+    if (distance > magnetRange) {
+      setButtonPosition({ x: 0, y: 0 })
+      return
+    }
+
+    // Calculate normalized direction
+    const directionX = deltaX / distance
+    const directionY = deltaY / distance
+
+    // Apply magnetic effect with falloff based on distance
     const maxDistance = 15
-    const limitedX = Math.max(-maxDistance, Math.min(maxDistance, deltaX * 0.3))
-    const limitedY = Math.max(-maxDistance, Math.min(maxDistance, deltaY * 0.3))
+    const strength = Math.min(1, magnetRange / distance) * 0.3
+    const moveX = directionX * distance * strength
+    const moveY = directionY * distance * strength
+
+    // Limit the movement to max distance
+    const limitedX = Math.max(-maxDistance, Math.min(maxDistance, moveX))
+    const limitedY = Math.max(-maxDistance, Math.min(maxDistance, moveY))
 
     setButtonPosition({ x: limitedX, y: limitedY })
   }
@@ -43,7 +60,11 @@ export function HeroWaitlist() {
   }
 
   return (
-    <section className="flex-1 flex items-center justify-center px-4 py-4 md:py-20 relative">
+    <section
+      className="flex-1 flex items-center justify-center px-4 py-4 md:py-20 relative"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="w-full max-w-2xl space-y-8">
         {/* Brand Logo/Image - Behind aurora */}
         <div className="flex justify-center mb-6 md:mb-14 relative z-0">
@@ -65,7 +86,7 @@ export function HeroWaitlist() {
         </div>
 
         {/* Email Signup - In front of aurora */}
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8 relative z-20 overflow-hidden">
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto pt-8 relative z-20">
           <div className="flex flex-col gap-3">
             <input
               type="email"
@@ -75,24 +96,17 @@ export function HeroWaitlist() {
               required
               className="w-full px-4 py-3 bg-white border-2 border-gray-200 text-foreground placeholder-gray-400 focus:outline-none focus:border-primary transition rounded"
             />
-            <div
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="relative"
-              style={{ padding: "1000px", margin: "-1000px" }}
+            <button
+              ref={buttonRef}
+              type="submit"
+              style={{
+                transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
+                transition: "transform 1s ease-out",
+              }}
+              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
             >
-              <button
-                ref={buttonRef}
-                type="submit"
-                style={{
-                  transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
-                  transition: "transform 1s ease-out",
-                }}
-                className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded"
-              >
-                {submitted ? "thanks for joining" : "join the waitlist"}
-              </button>
-            </div>
+              {submitted ? "thanks for joining" : "join the waitlist"}
+            </button>
           </div>
           {submitted && (
             <p className="text-center text-sm text-primary font-medium">Check your email for a special message.</p>
