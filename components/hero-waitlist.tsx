@@ -38,7 +38,7 @@ export function HeroWaitlist() {
     setButtonPosition({ x: limitedX, y: limitedY })
   }
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     setButtonPosition({ x: 0, y: 0 })
   }
 
