@@ -79,7 +79,7 @@ export function HeroWaitlist() {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               className="relative"
-              style={{ padding: "60px" }}
+              style={{ padding: "60px", margin: "-60px" }}
             >
               <button
                 ref={buttonRef}
