@@ -3,19 +3,46 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
+import { supabase } from "@/lib/supabase"
 
 export function HeroWaitlist() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
   const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 })
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) {
+    if (!email) return
+
+    setLoading(true)
+    setError("")
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('waitlist')
+        .insert([{ email }])
+
+      if (supabaseError) {
+        // Check if it's a duplicate email error
+        if (supabaseError.code === '23505') {
+          setError("You're already on the waitlist!")
+        } else {
+          setError("Something went wrong. Please try again.")
+        }
+        setLoading(false)
+        return
+      }
+
       setSubmitted(true)
       setEmail("")
       setTimeout(() => setSubmitted(false), 10000)
+    } catch (err) {
+      setError("Network error. Please check your connection.")
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -99,19 +126,33 @@ export function HeroWaitlist() {
             <button
               ref={buttonRef}
               type="submit"
+              disabled={loading}
               style={{
                 transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
                 transition: "transform 1s ease-out",
               }}
-              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded relative"
+              className="w-full px-4 py-3 bg-primary text-primary-foreground font-bold tracking-wide hover:opacity-90 transition rounded relative disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span
                 style={{
-                  opacity: submitted ? 0 : 1,
+                  opacity: submitted || loading ? 0 : 1,
                   transition: "opacity 0.5s ease-in-out",
                 }}
               >
                 join the waitlist
+              </span>
+              <span
+                style={{
+                  opacity: loading ? 1 : 0,
+                  transition: "opacity 0.5s ease-in-out",
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                joining...
               </span>
               <span
                 style={{
@@ -139,6 +180,11 @@ export function HeroWaitlist() {
           >
             Check your email for a special message.
           </p>
+          {error && (
+            <p className="text-center text-sm text-red-600 font-medium">
+              {error}
+            </p>
+          )}
         </form>
       </div>
     </section>
